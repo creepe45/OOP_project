@@ -1,0 +1,13 @@
+C:\Users\yoshi\Desktop\zobbbb\Battleships\obj\Debug\Battleships.csproj.AssemblyReference.cache
+C:\Users\yoshi\Desktop\zobbbb\Battleships\obj\Debug\Battleships.csproj.SuggestedBindingRedirects.cache
+C:\Users\yoshi\Desktop\zobbbb\Battleships\obj\Debug\Battleships.csproj.CoreCompileInputs.cache
+C:\Users\yoshi\Desktop\zobbbb\Battleships\bin\Debug\Battleships.exe.config
+C:\Users\yoshi\Desktop\zobbbb\Battleships\bin\Debug\Battleships.exe
+C:\Users\yoshi\Desktop\zobbbb\Battleships\bin\Debug\Battleships.pdb
+C:\Users\yoshi\Desktop\zobbbb\Battleships\bin\Debug\EntityFramework.dll
+C:\Users\yoshi\Desktop\zobbbb\Battleships\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\yoshi\Desktop\zobbbb\Battleships\bin\Debug\EntityFramework.xml
+C:\Users\yoshi\Desktop\zobbbb\Battleships\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\yoshi\Desktop\zobbbb\Battleships\obj\Debug\Battleships.csproj.CopyComplete
+C:\Users\yoshi\Desktop\zobbbb\Battleships\obj\Debug\Battleships.exe
+C:\Users\yoshi\Desktop\zobbbb\Battleships\obj\Debug\Battleships.pdb

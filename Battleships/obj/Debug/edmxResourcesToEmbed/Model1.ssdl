@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BattleshipDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attacks">
+    <Key>
+      <PropertyRef Name="Attacks_ID" />
+    </Key>
+    <Property Name="Attacks_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Coordinate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Hit" Type="bit" Nullable="false" />
+    <Property Name="Game_Attack" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="Game_ID" />
+    </Key>
+    <Property Name="Game_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Complete" Type="bit" Nullable="false" />
+    <Property Name="CreatorFK" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OpponentFK" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GameShipConfig">
+    <Key>
+      <PropertyRef Name="GSC_ID" />
+    </Key>
+    <Property Name="GSC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GSC_Coordinate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PlayerFK" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GameFK" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ships">
+    <Key>
+      <PropertyRef Name="Ship_ID" />
+    </Key>
+    <Property Name="Ship_ID" Type="int" Nullable="false" />
+    <Property Name="Ship_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Size" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CreatorFK">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="Games" Type="Self.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="CreatorFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Game_AttackFK">
+    <End Role="Games" Type="Self.Games" Multiplicity="1" />
+    <End Role="Attacks" Type="Self.Attacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Games">
+        <PropertyRef Name="Game_ID" />
+      </Principal>
+      <Dependent Role="Attacks">
+        <PropertyRef Name="Game_Attack" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GameFK">
+    <End Role="Games" Type="Self.Games" Multiplicity="1" />
+    <End Role="GameShipConfig" Type="Self.GameShipConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Games">
+        <PropertyRef Name="Game_ID" />
+      </Principal>
+      <Dependent Role="GameShipConfig">
+        <PropertyRef Name="GameFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OpponentFK">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="Games" Type="Self.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="OpponentFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayerFK">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="GameShipConfig" Type="Self.GameShipConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="GameShipConfig">
+        <PropertyRef Name="PlayerFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BattleshipDatabaseModelStoreContainer">
+    <EntitySet Name="Attacks" EntityType="Self.Attacks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GameShipConfig" EntityType="Self.GameShipConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ships" EntityType="Self.Ships" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="CreatorFK" Association="Self.CreatorFK">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="Game_AttackFK" Association="Self.Game_AttackFK">
+      <End Role="Games" EntitySet="Games" />
+      <End Role="Attacks" EntitySet="Attacks" />
+    </AssociationSet>
+    <AssociationSet Name="GameFK" Association="Self.GameFK">
+      <End Role="Games" EntitySet="Games" />
+      <End Role="GameShipConfig" EntitySet="GameShipConfig" />
+    </AssociationSet>
+    <AssociationSet Name="OpponentFK" Association="Self.OpponentFK">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerFK" Association="Self.PlayerFK">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="GameShipConfig" EntitySet="GameShipConfig" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
